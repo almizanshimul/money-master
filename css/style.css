@@ -11,3 +11,11 @@ Calculation Columns
 .clac-bg{
     background-color: #F8F8F8;
 }
+.input-bg{
+    background-color: #DCDCDC;
+}
+.input-bg:focus{
+    background-color: #DCDCDC;
+    outline: 2px solid #86b7fe;
+    box-shadow: none;
+}

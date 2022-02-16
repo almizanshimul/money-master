@@ -19,17 +19,60 @@
     </header>
     <!-- Main Start  -->
     <main>
+        <!-- Calculation Section  -->
         <section class="py-5">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-8">
+                    <!-- image column  -->
+                    <div class="col-lg-7">
                         <div class="img-box m-2">
                             <img class="img-fluid" src="./img/save-money.jpg" alt="Save Money">
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class=" m-2 clac-bg">
-                            this is calculation
+                    <!-- Calculation Column  -->
+                    <div class="col-lg-5">
+                        <div class="m-2 py-4 text-center clac-bg">
+                            <!-- Income Start  -->
+                            <h4>Income</h4>
+                            <div class="m-3 row">
+                                <label for="income"
+                                    class="col-3 col-sm-2 col-md-2 col-lg-2 col-form-label fs-6">Income:</label>
+                                <div class="col-9 col-sm-8 col-md-10 col-lg-8">
+                                    <input type="text" class="form-control border-0 input-bg" id="income">
+                                </div>
+                            </div>
+                            <!-- Income End  -->
+
+                            <!-- Expenses Start  -->
+                            <h4 class="pt-1">Expenses</h4>
+                            <div class="m-3 row">
+                                <label for="food"
+                                    class="col-3 col-sm-2 col-md-2 col-lg-2 col-form-label fs-6">Food:</label>
+                                <div class="col-9 col-sm-8 col-md-10 col-lg-8">
+                                    <input type="text" class="form-control border-0 input-bg" id="food">
+                                </div>
+                            </div>
+                            <div class="m-3 row">
+                                <label for="rent"
+                                    class="col-3 col-sm-2 col-md-2 col-lg-2 col-form-label fs-6">Rent:</label>
+                                <div class="col-9 col-sm-8 col-md-10 col-lg-8">
+                                    <input type="text" class="form-control border-0 input-bg" id="rent">
+                                </div>
+                            </div>
+                            <div class="m-3 row">
+                                <label for="clothes"
+                                    class="col-3 col-sm-2 col-md-2 col-lg-2 col-form-label fs-6">Clothes:</label>
+                                <div class="col-9 col-sm-8 col-md-10 col-lg-8">
+                                    <input type="text" class="form-control border-0 input-bg" id="clothes">
+                                </div>
+                            </div>
+                            <!-- Expenses End  -->
+                            <!-- Calculate Start  -->
+                            <button type="submit" class="btn btn-info btn-lg text-white py-1 px-5">Calculate</button>
+                            <p class="pt-2 fs-5 fw-bold">Total Expenses: <span>00</span></p>
+                            <p class="fs-5 fw-bold">Balance: <span>00</span></p>
+
+                          
                         </div>
                     </div>
                 </div>
