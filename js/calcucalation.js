@@ -2,101 +2,40 @@
 /* ------------------
 Input Field Error 
 --------------------- */
-function errorMessage(error, input) {
 
-    // Income Input Field Error show message 
+function errorMessage(error, numaricError, numberError, submitButton) {
+    if (isNaN(error)) {
+        document.querySelector(numaricError).style.display = 'block';
+        document.querySelector(numberError).style.display = 'none';
+        document.getElementById(submitButton).disabled = true;
+    } else if (error > -1) {
+        document.querySelector(numaricError).style.display = 'none';
+        document.querySelector(numberError).style.display = 'none';
+        document.getElementById(submitButton).disabled = false;
+    } else if (error < 0) {
+        document.querySelector(numberError).style.display = 'block';
+        document.querySelector(numaricError).style.display = 'none';
+        document.getElementById(submitButton).disabled = true;
 
-    if (input === 'inError') {
-        if (isNaN(error)) {
-            document.querySelector('.income-numeric').style.display = 'block';
-            document.querySelector('.income-number').style.display = 'none';
-            document.getElementById('calcu-submit').disabled = true;
-        } else if (error > -1) {
-            document.querySelector('.income-numeric').style.display = 'none';
-            document.querySelector('.income-number').style.display = 'none';
-            document.getElementById('calcu-submit').disabled = false;
-        } else if (error < 0) {
-            document.querySelector('.income-number').style.display = 'block';
-            document.querySelector('.income-numeric').style.display = 'none';
-            document.getElementById('calcu-submit').disabled = true;
-        }
     }
-
-    // Food Input Field Error show message 
-
-    if (input === 'fError') {
-        if (isNaN(error)) {
-            document.querySelector('.fnumeric').style.display = 'block';
-            document.querySelector('.fnumber').style.display = 'none';
-            document.getElementById('calcu-submit').disabled = true;
-        } else if (error > -1) {
-            document.querySelector('.fnumeric').style.display = 'none';
-            document.querySelector('.fnumber').style.display = 'none';
-            document.getElementById('calcu-submit').disabled = false;
-        } else if (error < 0) {
-            document.querySelector('.fnumber').style.display = 'block';
-            document.querySelector('.fnumeric').style.display = 'none';
-            document.getElementById('calcu-submit').disabled = true;
-
-        }
-    }
-
-    // rent Input Field Error show message 
-
-    if (input === 'rError') {
-        if (isNaN(error)) {
-            document.querySelector('.rnumeric').style.display = 'block';
-            document.querySelector('.rnumber').style.display = 'none';
-            document.getElementById('calcu-submit').disabled = true;
-        } else if (error > -1) {
-            document.querySelector('.rnumeric').style.display = 'none';
-            document.querySelector('.rnumber').style.display = 'none';
-            document.getElementById('calcu-submit').disabled = false;
-        } else if (error < 0) {
-            document.querySelector('.rnumber').style.display = 'block';
-            document.querySelector('.rnumeric').style.display = 'none';
-            document.getElementById('calcu-submit').disabled = true;
-
-        }
-    }
-
-    // Clothes Input Field Error show message 
-
-    if (input === 'cError') {
-        if (isNaN(error)) {
-            document.querySelector('.cnumeric').style.display = 'block';
-            document.querySelector('.cnumber').style.display = 'none';
-            document.getElementById('calcu-submit').disabled = true;
-        } else if (error > -1) {
-            document.querySelector('.cnumeric').style.display = 'none';
-            document.querySelector('.cnumber').style.display = 'none';
-            document.getElementById('calcu-submit').disabled = false;
-        } else if (error < 0) {
-            document.querySelector('.cnumber').style.display = 'block';
-            document.querySelector('.cnumeric').style.display = 'none';
-            document.getElementById('calcu-submit').disabled = true;
-
-        }
-    }
-
 }
+// Get All Input Field 
 
-// GEt All Input Field 
 document.getElementById('income').addEventListener('keyup', function () {
     const income = document.getElementById('income').value;
-    errorMessage(income, 'inError');
+    errorMessage(income, '.income-numeric', '.income-number', 'calcu-submit');
 });
 document.getElementById('food').addEventListener('keyup', function () {
     const food = document.getElementById('food').value;
-    errorMessage(food, 'fError');
+    errorMessage(food, '.fnumeric', '.fnumber', 'calcu-submit');
 });
 document.getElementById('rent').addEventListener('keyup', function () {
     const rent = document.getElementById('rent').value;
-    errorMessage(rent, 'rError');
+    errorMessage(rent, '.rnumeric', '.rnumber', 'calcu-submit');
 });
 document.getElementById('clothes').addEventListener('keyup', function () {
     const clothes = document.getElementById('clothes').value;
-    errorMessage(clothes, 'cError');
+    errorMessage(clothes, '.cnumeric', '.cnumber', 'calcu-submit');
 });
 
 /* ---------------------
@@ -113,12 +52,14 @@ document.getElementById('calcu-submit').addEventListener('click', function () {
     const clothes = document.getElementById('clothes');
     const clothesValue = parseFloat(clothes.value);
     // Get All Text Field 
+    const inputIncome = document.querySelector('.total-income');
     const inputExpenses = document.querySelector('.total-expenses');
     const inputBalance = document.querySelector('.input-balance');
     const expensesNumber = inputExpenses.innerText;
     if ((incomeValue > -1) && (foodValue > -1) && (rentValue > -1) && (clothesValue > -1)) {
         totalExpenses = foodValue + rentValue + clothesValue;
         inputExpenses.innerText = totalExpenses;
+        inputIncome.innerText = incomeValue;
         inputBalance.innerText = incomeValue - totalExpenses;
         income.value = '';
         food.value = '';
@@ -130,29 +71,47 @@ document.getElementById('calcu-submit').addEventListener('click', function () {
     }
 
 
-})
+});
 
 
 /* -----------------------
 Save Money your Income 
 --------------------------- */
-function saveMoneyError(error) {
-    if (isNaN(error)) {
-        document.querySelector('.save-numeric-error').style.display = 'block';
-        document.querySelector('.save-number-error').style.display = 'none';
-        document.getElementById('save-button').disabled = true;
-    } else if (error > -1) {
-        document.querySelector('.save-numeric-error').style.display = 'none';
-        document.querySelector('.save-number-error').style.display = 'none';
-        document.getElementById('save-button').disabled = false;
-    } else if (error < 0) {
-        document.querySelector('.save-numeric-error').style.display = 'none';
-        document.querySelector('.save-number-error').style.display = 'block';
-        document.getElementById('save-button').disabled = true;
-    }
-}
 
 document.getElementById('save-money').addEventListener('keyup', function () {
     const saveMoney = document.getElementById('save-money').value;
-    saveMoneyError(saveMoney);
+    errorMessage(saveMoney, '.save-numeric-error', '.save-number-error', 'save-button');
+});
+
+// Save Money calculation Start 
+document.getElementById('save-button').addEventListener('click', function () {
+    // get total Income Balance input 
+    const income = document.querySelector('.total-income');
+    const incomeValue = parseFloat(income.innerText);
+
+    // get Deposit balance text field
+    const depositBalance = document.querySelector('.input-balance');
+    const depositBalanceValue = parseFloat(depositBalance.innerText);     /*  ata akta  */
+
+    // get save money input field 
+    const getSaveMoneyinput = document.getElementById('save-money');
+
+    // get saving amount value 
+    const getSavingtext = document.getElementById('saving-amount');
+
+    // get remaining amount value 
+    const getRemainingBalance = document.getElementById('remaining-balance');
+    const remainingBalanceValue = parseFloat(getRemainingBalance.innerText);
+
+    // calculation saveing Money 
+    const saveMoneyValue = parseFloat(getSaveMoneyinput.value) / 100;
+    const saveMoney = incomeValue * saveMoneyValue;
+    getSavingtext.innerText = parseFloat(saveMoney).toFixed(2);
+    getSaveMoneyinput.value = '';
+
+    // calculation remaining balance money
+    const savingMoneyValue = parseFloat(getSavingtext.innerText);
+
+    const totalRemainingBalance = depositBalanceValue - savingMoneyValue;
+    getRemainingBalance.innerText = totalRemainingBalance;
 })
