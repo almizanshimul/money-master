@@ -65,18 +65,24 @@ document.getElementById('calcu-submit').addEventListener('click', function () {
 
     if ((incomeValue > -1) && (foodValue > -1) && (rentValue > -1) && (clothesValue > -1)) {
         totalExpenses = foodValue + rentValue + clothesValue;
-        inputExpenses.innerText = totalExpenses;
-        inputIncome.innerText = incomeValue;
-        inputBalance.innerText = incomeValue - totalExpenses;
-        income.value = '';
-        food.value = '';
-        rent.value = '';
-        clothes.value = '';
+
+        if (totalExpenses < incomeValue) {
+            inputExpenses.innerText = totalExpenses;
+            inputIncome.innerText = incomeValue;
+            inputBalance.innerText = incomeValue - totalExpenses;
+            income.value = '';
+            food.value = '';
+            rent.value = '';
+            clothes.value = '';
+            document.querySelector('.enough-total-balance-error').style.display = 'none';
+        } else {
+            document.querySelector('.enough-total-balance-error').style.display = 'block';
+        }
+
         document.querySelector('.button-number').style.display = 'none'
     } else {
         document.querySelector('.button-number').style.display = 'block'
     }
-
 
 });
 
