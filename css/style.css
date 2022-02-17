@@ -19,3 +19,7 @@ Calculation Columns
     outline: 2px solid #86b7fe;
     box-shadow: none;
 }
+.error{
+    display: none;
+    margin: 0px;
+}
