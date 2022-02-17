@@ -42,20 +42,27 @@ document.getElementById('clothes').addEventListener('keyup', function () {
 Calculation Part 
 --------------------- */
 document.getElementById('calcu-submit').addEventListener('click', function () {
-    // Get All Input Field 
+    // Get income Input Field 
     const income = document.getElementById('income');
     const incomeValue = parseFloat(income.value);
+    // Get food Input Field 
     const food = document.getElementById('food');
     const foodValue = parseFloat(food.value);
+    // Get rent Input Field 
     const rent = document.getElementById('rent');
     const rentValue = parseFloat(rent.value);
+    // Get clothes Input Field 
     const clothes = document.getElementById('clothes');
     const clothesValue = parseFloat(clothes.value);
-    // Get All Text Field 
+
+    // Get total income Text Field 
     const inputIncome = document.querySelector('.total-income');
+    // Get total expenses Text Field 
     const inputExpenses = document.querySelector('.total-expenses');
+    // Get total balance Text Field 
     const inputBalance = document.querySelector('.input-balance');
     const expensesNumber = inputExpenses.innerText;
+
     if ((incomeValue > -1) && (foodValue > -1) && (rentValue > -1) && (clothesValue > -1)) {
         totalExpenses = foodValue + rentValue + clothesValue;
         inputExpenses.innerText = totalExpenses;
@@ -91,7 +98,7 @@ document.getElementById('save-button').addEventListener('click', function () {
 
     // get Deposit balance text field
     const depositBalance = document.querySelector('.input-balance');
-    const depositBalanceValue = parseFloat(depositBalance.innerText);     /*  ata akta  */
+    const depositBalanceValue = parseFloat(depositBalance.innerText);
 
     // get save money input field 
     const getSaveMoneyinput = document.getElementById('save-money');
@@ -106,12 +113,20 @@ document.getElementById('save-button').addEventListener('click', function () {
     // calculation saveing Money 
     const saveMoneyValue = parseFloat(getSaveMoneyinput.value) / 100;
     const saveMoney = incomeValue * saveMoneyValue;
-    getSavingtext.innerText = parseFloat(saveMoney).toFixed(2);
-    getSaveMoneyinput.value = '';
+    // getSavingtext.innerText = saveMoney.toFixed(2);
+
 
     // calculation remaining balance money
-    const savingMoneyValue = parseFloat(getSavingtext.innerText);
 
-    const totalRemainingBalance = depositBalanceValue - savingMoneyValue;
-    getRemainingBalance.innerText = totalRemainingBalance;
+    if (depositBalanceValue > saveMoney) {
+        getSavingtext.innerText = saveMoney.toFixed(2);
+        const totalRemainingBalance = depositBalanceValue - saveMoney;
+        getRemainingBalance.innerText = totalRemainingBalance.toFixed(2);
+        getSaveMoneyinput.value = '';
+        document.querySelector('.enough-balance-error').style.display = 'none';
+    } else {
+        document.querySelector('.enough-balance-error').style.display = 'block';
+        getRemainingBalance.innerText = '00.00';
+        getSavingtext.innerText = '00.00';
+    }
 })
