@@ -132,3 +132,27 @@ document.getElementById('calcu-submit').addEventListener('click', function () {
 
 })
 
+
+/* -----------------------
+Save Money your Income 
+--------------------------- */
+function saveMoneyError(error) {
+    if (isNaN(error)) {
+        document.querySelector('.save-numeric-error').style.display = 'block';
+        document.querySelector('.save-number-error').style.display = 'none';
+        document.getElementById('save-button').disabled = true;
+    } else if (error > -1) {
+        document.querySelector('.save-numeric-error').style.display = 'none';
+        document.querySelector('.save-number-error').style.display = 'none';
+        document.getElementById('save-button').disabled = false;
+    } else if (error < 0) {
+        document.querySelector('.save-numeric-error').style.display = 'none';
+        document.querySelector('.save-number-error').style.display = 'block';
+        document.getElementById('save-button').disabled = true;
+    }
+}
+
+document.getElementById('save-money').addEventListener('keyup', function () {
+    const saveMoney = document.getElementById('save-money').value;
+    saveMoneyError(saveMoney);
+})

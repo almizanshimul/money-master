@@ -85,21 +85,27 @@
 
                             <!-- Money Save  -->
                             <div class="m-3 row">
-                                <label for="save"
+                                <label for="save-money"
                                     class="col-2 col-sm-2 col-md-2 col-lg-2 col-form-label fs-6">Save:</label>
                                 <div class="col-5 col-sm-3 col-md-5 col-lg-4">
-                                    <input type="text" class="form-control border-0 input-bg" id="save">
+                                    <input type="text" class="form-control border-0 input-bg" id="save-money">
                                 </div>
                                 <div class="col-1 col-sm-2 col-md-1 col-lg-1">
                                     <p class="fw-bold">%</p>
                                 </div>
                                 <div class="col-3 col-sm-2 col-md-3 col-lg-3">
-                                    <button type="submit"
-                                        class="btn btn-info btn-lg text-white py-1 px-4 px-sm-5">Save</button>
+                                    <button id="save-button" type="submit"
+                                        class="btn btn-info btn-lg text-white py-1 px-4 px-sm-5" disabled>Save</button>
                                 </div>
                             </div>
-                            <p class="fs-5 fw-bold">Saving Amount: <span>00</span></p>
-                            <p class="fs-5 fw-bold">Remaining Balance: <span>00</span></p>
+                            <!-- error message  -->
+                            <p class="error save-numeric-error fs-6 text-danger">Please enter numeric code.</p>
+                            <p class="error save-number-error fs-6 text-danger">Please Entar a Valid Number.</p>
+
+                            <!-- balance part  -->
+
+                            <p class="fs-5 fw-bold">Saving Amount: <span id="saving-amount">00</span></p>
+                            <p class="fs-5 fw-bold">Remaining Balance: <span id="remaining-balance">00</span></p>
                         </div>
                     </div>
                 </div>
