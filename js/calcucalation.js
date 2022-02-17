@@ -11,7 +11,7 @@ function errorMessage(error, input) {
             document.querySelector('.income-numeric').style.display = 'block';
             document.querySelector('.income-number').style.display = 'none';
             document.getElementById('calcu-submit').disabled = true;
-        } else if (error > 1) {
+        } else if (error > -1) {
             document.querySelector('.income-numeric').style.display = 'none';
             document.querySelector('.income-number').style.display = 'none';
             document.getElementById('calcu-submit').disabled = false;
@@ -29,7 +29,7 @@ function errorMessage(error, input) {
             document.querySelector('.fnumeric').style.display = 'block';
             document.querySelector('.fnumber').style.display = 'none';
             document.getElementById('calcu-submit').disabled = true;
-        } else if (error > 1) {
+        } else if (error > -1) {
             document.querySelector('.fnumeric').style.display = 'none';
             document.querySelector('.fnumber').style.display = 'none';
             document.getElementById('calcu-submit').disabled = false;
@@ -48,7 +48,7 @@ function errorMessage(error, input) {
             document.querySelector('.rnumeric').style.display = 'block';
             document.querySelector('.rnumber').style.display = 'none';
             document.getElementById('calcu-submit').disabled = true;
-        } else if (error > 1) {
+        } else if (error > -1) {
             document.querySelector('.rnumeric').style.display = 'none';
             document.querySelector('.rnumber').style.display = 'none';
             document.getElementById('calcu-submit').disabled = false;
@@ -67,7 +67,7 @@ function errorMessage(error, input) {
             document.querySelector('.cnumeric').style.display = 'block';
             document.querySelector('.cnumber').style.display = 'none';
             document.getElementById('calcu-submit').disabled = true;
-        } else if (error > 1) {
+        } else if (error > -1) {
             document.querySelector('.cnumeric').style.display = 'none';
             document.querySelector('.cnumber').style.display = 'none';
             document.getElementById('calcu-submit').disabled = false;
@@ -105,23 +105,30 @@ Calculation Part
 document.getElementById('calcu-submit').addEventListener('click', function () {
     // Get All Input Field 
     const income = document.getElementById('income');
-    const incomeValue = income.value;
+    const incomeValue = parseFloat(income.value);
     const food = document.getElementById('food');
-    const foodValue = food.value;
+    const foodValue = parseFloat(food.value);
     const rent = document.getElementById('rent');
-    const rentValue = rent.value;
+    const rentValue = parseFloat(rent.value);
     const clothes = document.getElementById('clothes');
-    const clothesValue = clothes.value;
+    const clothesValue = parseFloat(clothes.value);
     // Get All Text Field 
     const inputExpenses = document.querySelector('.total-expenses');
     const inputBalance = document.querySelector('.input-balance');
     const expensesNumber = inputExpenses.innerText;
-    totalExpenses = parseFloat(foodValue) + parseFloat(rentValue) + parseFloat(clothesValue);
-    inputExpenses.innerText = totalExpenses;
-    inputBalance.innerText = parseFloat(incomeValue) - totalExpenses;
-    income.value = '';
-    food.value = '';
-    rent.value = '';
-    clothes.value = '';
+    if ((incomeValue > -1) && (foodValue > -1) && (rentValue > -1) && (clothesValue > -1)) {
+        totalExpenses = foodValue + rentValue + clothesValue;
+        inputExpenses.innerText = totalExpenses;
+        inputBalance.innerText = incomeValue - totalExpenses;
+        income.value = '';
+        food.value = '';
+        rent.value = '';
+        clothes.value = '';
+        document.querySelector('.button-number').style.display = 'none'
+    } else {
+        document.querySelector('.button-number').style.display = 'block'
+    }
+
+
 })
 
